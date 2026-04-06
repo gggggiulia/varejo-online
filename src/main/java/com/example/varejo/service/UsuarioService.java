@@ -13,16 +13,8 @@ public class UsuarioService {
     private UsuarioRepository repository;
 
     public Usuario createUsuario(Usuario usuario) {
-        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O e-mail é obrigatório!");
-        }
-
         if (repository.existsByEmail(usuario.getEmail())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Este e-mail já está em uso.");
-        }
-
-        if (usuario.getSenha() == null || usuario.getSenha().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A senha é obrigatória!");
         }
 
         return repository.save(usuario);

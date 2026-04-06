@@ -2,6 +2,7 @@ package com.example.varejo.controller;
 
 import com.example.varejo.entity.Usuario;
 import com.example.varejo.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ public class UsuarioController {
     private UsuarioService service;
 
     @PostMapping
-    public Usuario createUsuario(@RequestBody Usuario usuario) {
+    public Usuario createUsuario(@Valid @RequestBody Usuario usuario) {
         return service.createUsuario(usuario);
     }
 }
